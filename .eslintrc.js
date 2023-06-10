@@ -8,5 +8,5 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  rules: {},
+  rules: { "react/react-in-jsx-scope": "off" },
 };
