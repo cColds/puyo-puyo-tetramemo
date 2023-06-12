@@ -6,6 +6,8 @@ export default function Cards({
   setCardsClicked,
   incrementCurrentScore,
   resetGame,
+  updateBestScore,
+  isBestScore,
 }) {
   return (
     <ul>
@@ -24,6 +26,10 @@ export default function Cards({
               if (card.hasClicked) {
                 alert("You lost!");
                 resetGame();
+              }
+
+              if (isBestScore()) {
+                updateBestScore();
               }
             }}
           >
@@ -62,4 +68,6 @@ Cards.propTypes = {
   setCardsClicked: PropTypes.func.isRequired,
   incrementCurrentScore: PropTypes.func.isRequired,
   resetGame: PropTypes.func.isRequired,
+  updateBestScore: PropTypes.func.isRequired,
+  isBestScore: PropTypes.func.isRequired,
 };

@@ -37,7 +37,7 @@ export default function Game() {
   const [cards, setCards] = useState(generateNewCards(cardsData));
   const cardsInUse = cards.filter((card) => card.isCardInUse);
   const [currentScore, setCurrentScore] = useState(0);
-  const [bestScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
 
   const setCardsClicked = useCallback(
     (targetCards, cardToUpdate) => {
@@ -58,7 +58,10 @@ export default function Game() {
     setCards(generateNewCards(cardsData));
   };
 
+  const isBestScore = () => currentScore > bestScore;
+
   const incrementCurrentScore = () => setCurrentScore(currentScore + 1);
+  const updateBestScore = () => setBestScore(currentScore);
 
   const resetGame = () => {
     resetCards();
@@ -78,6 +81,8 @@ export default function Game() {
         setCardsClicked={setCardsClicked}
         incrementCurrentScore={incrementCurrentScore}
         resetGame={resetGame}
+        updateBestScore={updateBestScore}
+        isBestScore={isBestScore}
       />
     </div>
   );
@@ -85,9 +90,17 @@ export default function Game() {
 
 // TODO:
 /* 
-- End game if clicked the same card
+
 - Add more cards to test if cards generate and all cards clicked
 - End Game if all cards including previous cards have been clicked
+
+
+
+*/
+
+// Completed TODOS:
+/* 
+- End game if clicked the same card
 - Add current score counter
 - Add best score counter
 
