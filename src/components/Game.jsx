@@ -58,6 +58,8 @@ export default function Game() {
 
   return (
     <div>
+      <div className="current-score">Current score: 0</div>
+
       <Cards
         cards={cards}
         cardsInUse={cardsInUse}

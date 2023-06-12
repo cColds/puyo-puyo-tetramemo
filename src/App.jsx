@@ -1,6 +1,7 @@
 import React from "react";
 import Game from "./components/Game";
 import "./styles/css/cards.css";
+import "./styles/css/app.css";
 
 function App() {
   return (
