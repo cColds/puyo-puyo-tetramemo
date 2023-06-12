@@ -1,8 +1,8 @@
 {
   "cards": [
-    { "name": "Ringo", "image": "Ringo_PPT2.png" },
-    { "name": "Arle", "image": "" },
-    { "name": "Amitie", "image": "" },
-    { "name": "Maguro", "image": "" }
+    { "name": "Ringo", "image": "ringo.png" },
+    { "name": "Arle", "image": "arle.png" },
+    { "name": "Amitie", "image": "amitie.png" },
+    { "name": "Maguro", "image": "maguro.png" }
   ]
 }
