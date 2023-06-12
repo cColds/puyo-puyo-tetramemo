@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Cards from "./Cards";
 import cardsData from "../data/cards";
 
@@ -37,17 +37,20 @@ export default function Game() {
   const [cards, setCards] = useState(generateNewCards(cardsData));
   const cardsInUse = cards.filter((card) => card.isCardInUse);
 
-  function setCardsClicked(targetCards, cardToUpdate) {
-    const updatedCards = targetCards.map((card) => {
-      if (card.id === cardToUpdate.id) {
-        return { ...cardToUpdate, hasClicked: true };
-      }
+  const setCardsClicked = useCallback(
+    (targetCards, cardToUpdate) => {
+      const updatedCards = targetCards.map((card) => {
+        if (card.id === cardToUpdate.id) {
+          return { ...cardToUpdate, hasClicked: true };
+        }
 
-      return card;
-    });
+        return card;
+      });
 
-    setCards(updatedCards);
-  }
+      setCards(updatedCards);
+    },
+    [setCards]
+  );
 
   return (
     <div>
@@ -62,7 +65,10 @@ export default function Game() {
 
 // TODO:
 /* 
-- Add event listener to cards
-- 
+- End game if clicked the same card
+- Add more cards to test if cards generate and all cards clicked
+- End Game if all cards including previous cards have been clicked
+- Add current score counter
+- Add best score counter
 
 */
