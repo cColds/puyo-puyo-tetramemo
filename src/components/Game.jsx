@@ -36,6 +36,7 @@ export default function Game() {
 
   const [cards, setCards] = useState(generateNewCards(cardsData));
   const cardsInUse = cards.filter((card) => card.isCardInUse);
+  const [currentScore, setCurrentScore] = useState(0);
 
   const setCardsClicked = useCallback(
     (targetCards, cardToUpdate) => {
@@ -56,15 +57,23 @@ export default function Game() {
     setCards(generateNewCards(cardsData));
   };
 
+  const incrementCurrentScore = () => setCurrentScore(currentScore + 1);
+
+  const resetGame = () => {
+    resetCards();
+    setCurrentScore(0);
+  };
+
   return (
     <div>
-      <div className="current-score">Current score: 0</div>
+      <div className="current-score">Current score: {currentScore}</div>
 
       <Cards
         cards={cards}
         cardsInUse={cardsInUse}
         setCardsClicked={setCardsClicked}
-        resetCards={resetCards}
+        incrementCurrentScore={incrementCurrentScore}
+        resetGame={resetGame}
       />
     </div>
   );

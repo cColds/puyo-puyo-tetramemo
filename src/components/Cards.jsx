@@ -4,7 +4,8 @@ export default function Cards({
   cards,
   cardsInUse,
   setCardsClicked,
-  resetCards,
+  incrementCurrentScore,
+  resetGame,
 }) {
   return (
     <ul>
@@ -16,12 +17,13 @@ export default function Cards({
             onClick={() => {
               if (!card.hasClicked) {
                 setCardsClicked(cards, card);
+                incrementCurrentScore();
                 return;
               }
 
               if (card.hasClicked) {
                 alert("You lost!");
-                resetCards();
+                resetGame();
               }
             }}
           >
@@ -58,5 +60,6 @@ Cards.propTypes = {
     })
   ).isRequired,
   setCardsClicked: PropTypes.func.isRequired,
-  resetCards: PropTypes.func.isRequired,
+  incrementCurrentScore: PropTypes.func.isRequired,
+  resetGame: PropTypes.func.isRequired,
 };
