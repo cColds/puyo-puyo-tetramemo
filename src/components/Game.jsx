@@ -37,6 +37,7 @@ export default function Game() {
   const [cards, setCards] = useState(generateNewCards(cardsData));
   const cardsInUse = cards.filter((card) => card.isCardInUse);
   const [currentScore, setCurrentScore] = useState(0);
+  const [bestScore] = useState(0);
 
   const setCardsClicked = useCallback(
     (targetCards, cardToUpdate) => {
@@ -66,7 +67,10 @@ export default function Game() {
 
   return (
     <div>
-      <div className="current-score">Current score: {currentScore}</div>
+      <div className="score-container">
+        <div className="current-score">Current score: {currentScore}</div>
+        <div className="best-score">Best score: {bestScore}</div>
+      </div>
 
       <Cards
         cards={cards}
