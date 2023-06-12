@@ -1,8 +1,0 @@
-{
-  "cards": [
-    { "name": "Ringo", "image": "ringo.png", "hasClicked": false, "isCardInUse": false },
-    { "name": "Arle", "image": "arle.png", "hasClicked": false, "isCardInUse": false },
-    { "name": "Amitie", "image": "amitie.png", "hasClicked": false, "isCardInUse": false },
-    { "name": "Maguro", "image": "maguro.png", "hasClicked": false, "isCardInUse": false }
-  ]
-}
