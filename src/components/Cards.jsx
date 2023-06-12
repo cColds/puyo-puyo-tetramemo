@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
 
-export default function Cards({ cards, cardsInUse, setCardsClicked }) {
+export default function Cards({
+  cards,
+  cardsInUse,
+  setCardsClicked,
+  resetCards,
+}) {
   return (
     <ul>
       {cardsInUse.map((card) => (
@@ -9,8 +14,15 @@ export default function Cards({ cards, cardsInUse, setCardsClicked }) {
             type="button"
             className="card-button"
             onClick={() => {
-              setCardsClicked(cards, card);
-              console.log("Clicked!");
+              if (!card.hasClicked) {
+                setCardsClicked(cards, card);
+                return;
+              }
+
+              if (card.hasClicked) {
+                alert("You lost!");
+                resetCards();
+              }
             }}
           >
             <img
@@ -45,6 +57,6 @@ Cards.propTypes = {
       id: PropTypes.string,
     })
   ).isRequired,
-
   setCardsClicked: PropTypes.func.isRequired,
+  resetCards: PropTypes.func.isRequired,
 };

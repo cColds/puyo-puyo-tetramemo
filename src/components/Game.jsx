@@ -52,12 +52,17 @@ export default function Game() {
     [setCards]
   );
 
+  const resetCards = () => {
+    setCards(generateNewCards(cardsData));
+  };
+
   return (
     <div>
       <Cards
         cards={cards}
         cardsInUse={cardsInUse}
         setCardsClicked={setCardsClicked}
+        resetCards={resetCards}
       />
     </div>
   );
