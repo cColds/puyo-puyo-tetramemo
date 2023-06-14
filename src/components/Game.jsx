@@ -77,18 +77,19 @@ export default function Game() {
 // TODO:
 /* 
 
+- Randomize cards on click
 - Add more cards to cards.js
-- Generate more cards after clicking on all cards (maybe unique ones only)
 - End Game if all cards including previous cards have been clicked
 - Change isCardInUse prop to isInUse for conciseness (or maybe to active)
 
 
 */
 
-// Completed TODOS:
+// Completed TODOS (sorted by oldest):
 /* 
 - End game if clicked the same card
 - Add current score counter
 - Add best score counter
+- Generate more cards after clicking on all cards (maybe unique ones only)
 
 */

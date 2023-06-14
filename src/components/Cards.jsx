@@ -38,6 +38,15 @@ export default function Cards({
     return cardsInUseFiltered.every((card) => card.hasClicked);
   };
 
+  function getShuffledCards(array) {
+    const copy = [...array];
+    for (let i = copy.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
   return (
     <ul>
       {cardsInUse.map((card) => (
@@ -47,7 +56,10 @@ export default function Cards({
             className="card-button"
             onClick={() => {
               if (!card.hasClicked) {
-                const updatedCards = setCardsClicked(cards, card);
+                const updatedCards = setCardsClicked(
+                  getShuffledCards(cards),
+                  card
+                );
                 setCards(() => updatedCards);
                 incrementCurrentScore();
                 console.log(updatedCards);
