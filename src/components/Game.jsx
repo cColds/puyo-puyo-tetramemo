@@ -17,11 +17,10 @@ export default function Game() {
     return targetCards.filter((card) => card.hasClicked).length;
   }
 
-  function generateNewCards(targetCards) {
+  const generateNewCards = useCallback((targetCards) => {
     const shuffledCards = getShuffledCards(targetCards);
 
     const cardsToGenerate = getCardsClickedCount(targetCards) + 2;
-
     let i = 0;
     const newCards = shuffledCards.map((card) => {
       if (!card.hasClicked && cardsToGenerate > i) {
@@ -32,27 +31,12 @@ export default function Game() {
       return card;
     });
     return newCards;
-  }
+  });
 
   const [cards, setCards] = useState(generateNewCards(cardsData));
   const cardsInUse = cards.filter((card) => card.isCardInUse);
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-
-  const setCardsClicked = useCallback(
-    (targetCards, cardToUpdate) => {
-      const updatedCards = targetCards.map((card) => {
-        if (card.id === cardToUpdate.id) {
-          return { ...cardToUpdate, hasClicked: true };
-        }
-
-        return card;
-      });
-
-      setCards(updatedCards);
-    },
-    [setCards]
-  );
 
   const resetCards = () => {
     setCards(generateNewCards(cardsData));
@@ -61,6 +45,7 @@ export default function Game() {
   const isBestScore = () => currentScore > bestScore;
 
   const incrementCurrentScore = () => setCurrentScore(currentScore + 1);
+
   const updateBestScore = () => setBestScore(currentScore);
 
   const resetGame = () => {
@@ -78,11 +63,12 @@ export default function Game() {
       <Cards
         cards={cards}
         cardsInUse={cardsInUse}
-        setCardsClicked={setCardsClicked}
+        setCards={setCards}
         incrementCurrentScore={incrementCurrentScore}
         resetGame={resetGame}
         updateBestScore={updateBestScore}
         isBestScore={isBestScore}
+        generateNewCards={generateNewCards}
       />
     </div>
   );
@@ -91,9 +77,10 @@ export default function Game() {
 // TODO:
 /* 
 
-- Add more cards to test if cards generate and all cards clicked
+- Add more cards to cards.js
+- Generate more cards after clicking on all cards (maybe unique ones only)
 - End Game if all cards including previous cards have been clicked
-
+- Change isCardInUse prop to isInUse for conciseness (or maybe to active)
 
 
 */
