@@ -7,7 +7,10 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1 className="header-text">puyo puyo tetramemo</h1>
+        <h1 className="header-text">
+          <span className="puyo-puyo">puyo puyo </span>
+          <span className="tetramemo">tetramemo</span>
+        </h1>
         <Game />
       </header>
     </div>

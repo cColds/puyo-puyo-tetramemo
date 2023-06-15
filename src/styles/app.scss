@@ -1,11 +1,35 @@
 @use "variables";
+@font-face {
+  font-family: Modulus;
+  src: url("/public/assets/fonts/Modulus.ttf");
+}
 
 .App {
+  display: flex;
+  justify-content: center;
+
+  .header-text {
+    font-family: Modulus, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+      "Helvetica Neue", sans-serif;
+    text-align: center;
+    padding: 10px;
+
+    .puyo-puyo {
+      color: variables.$light-blue;
+    }
+
+    .tetramemo {
+      color: variables.$purple;
+    }
+  }
+
   .score-container {
     display: flex;
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
+    padding: 10px;
 
     .current-score,
     .best-score {
@@ -22,5 +46,14 @@
     .best-score {
       background-color: variables.$purple;
     }
+  }
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
   }
 }
