@@ -62,10 +62,13 @@ export default function Cards({
                 );
                 setCards(() => updatedCards);
                 incrementCurrentScore();
-                console.log(updatedCards);
                 if (areAllCardsInUseClicked(updatedCards)) {
-                  console.log(true);
-                  setCards(generateNewCards(setAllCardsInUse(updatedCards)));
+                  setCards(
+                    generateNewCards(
+                      setAllCardsInUse(updatedCards),
+                      cardsInUse.length
+                    )
+                  );
                 }
 
                 return;

@@ -13,14 +13,9 @@ export default function Game() {
     return copy;
   }
 
-  function getCardsClickedCount(targetCards) {
-    return targetCards.filter((card) => card.hasClicked).length;
-  }
-
-  const generateNewCards = useCallback((targetCards) => {
+  const generateNewCards = useCallback((targetCards, cardsInUse = 0) => {
     const shuffledCards = getShuffledCards(targetCards);
-
-    const cardsToGenerate = getCardsClickedCount(targetCards) + 2;
+    const cardsToGenerate = cardsInUse + 2;
     let i = 0;
     const newCards = shuffledCards.map((card) => {
       if (!card.hasClicked && cardsToGenerate > i) {
@@ -77,11 +72,16 @@ export default function Game() {
 // TODO:
 /* 
 
-- Randomize cards on click
-- Add more cards to cards.js
+- Add Nunito font for base and Modulus font for title
+- Center app's children
+- Remove card button's border
+- Add gap between cards
+- Style title's text
 - End Game if all cards including previous cards have been clicked
-- Change isCardInUse prop to isInUse for conciseness (or maybe to active)
-
+- Refactor code: 
+- isCardInUse prop to isInUse for conciseness (or maybe to active)
+- Convert the rest of the functions to arrow functions
+- Refactor targetCards params
 
 */
 
@@ -91,5 +91,6 @@ export default function Game() {
 - Add current score counter
 - Add best score counter
 - Generate more cards after clicking on all cards (maybe unique ones only)
-
+- Randomize cards on click
+- Add more cards to cards.js
 */
