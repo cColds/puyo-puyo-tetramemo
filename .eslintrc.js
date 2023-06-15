@@ -1,17 +1,12 @@
 module.exports = {
-  "import/no-extraneous-dependencies": [
-    "error",
-    {
-      devDependencies: false,
-      optionalDependencies: false,
-      peerDependencies: false,
-      packageDir: ___dirname,
-    },
-  ],
+  globals: {
+    __dirname: true,
+  },
 
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
   extends: ["airbnb", "prettier"],
   parserOptions: {
