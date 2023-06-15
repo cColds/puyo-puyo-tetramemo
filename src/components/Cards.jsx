@@ -87,7 +87,7 @@ export default function Cards({
             <img
               className="character-image"
               src={`/assets/characters/${card.image}`}
-              alt="Character"
+              alt={card.name}
               draggable="false"
             />
             <div className="character-name">{card.name}</div>
