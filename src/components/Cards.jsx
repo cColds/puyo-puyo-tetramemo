@@ -5,13 +5,14 @@ export default function Cards({
   cards,
   activeCards,
   setCards,
-  incrementCurrentScore,
-  updateBestScore,
-  isBestScore,
+
+  currentScore,
   generateNewCards,
   setIsGameLost,
   setIsGameWon,
   setCurrentScore,
+  bestScore,
+  setBestScore,
 }) {
   const getCardsClicked = (targetCards, cardToUpdate) => {
     const updatedCards = targetCards.map((card) => {
@@ -45,13 +46,12 @@ export default function Cards({
   const handleGameLost = () => {
     setIsGameLost(true);
     setCurrentScore(0);
-    if (isBestScore()) updateBestScore();
+    if (currentScore > bestScore) setBestScore(currentScore);
   };
 
-  const handleGameWon = () => {
+  const handleGameWon = (updatedCurrentScore) => {
     setIsGameWon(true);
-    setCurrentScore(0);
-    if (isBestScore()) updateBestScore();
+    if (updatedCurrentScore > bestScore) setBestScore(updatedCurrentScore);
   };
 
   const handleCardClick = (card) => {
@@ -61,10 +61,6 @@ export default function Cards({
     }
 
     const updatedCards = getCardsClicked(getShuffledCards(cards), card);
-    if (areAllCardsClicked(updatedCards)) {
-      handleGameWon();
-      return;
-    }
 
     if (areAllActiveCardsClicked(updatedCards)) {
       const newActiveCards = getNewActiveCards(updatedCards);
@@ -72,7 +68,12 @@ export default function Cards({
     } else {
       setCards(updatedCards);
     }
-    incrementCurrentScore();
+    const updatedCurrentScore = currentScore + 1;
+    setCurrentScore(updatedCurrentScore);
+    console.log(areAllCardsClicked(updatedCards));
+    if (areAllCardsClicked(updatedCards)) {
+      handleGameWon(updatedCurrentScore);
+    }
   };
 
   return (
@@ -118,11 +119,11 @@ Cards.propTypes = {
     })
   ).isRequired,
   setCards: PropTypes.func.isRequired,
-  incrementCurrentScore: PropTypes.func.isRequired,
-  updateBestScore: PropTypes.func.isRequired,
-  isBestScore: PropTypes.func.isRequired,
+  setBestScore: PropTypes.func.isRequired,
   generateNewCards: PropTypes.func.isRequired,
   setIsGameLost: PropTypes.func.isRequired,
   setIsGameWon: PropTypes.func.isRequired,
+  currentScore: PropTypes.number.isRequired,
   setCurrentScore: PropTypes.func.isRequired,
+  bestScore: PropTypes.number.isRequired,
 };

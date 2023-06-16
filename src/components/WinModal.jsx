@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
 
-export default function WinModal({ isGameWon, setIsGameWon, resetCards }) {
+export default function WinModal({
+  isGameWon,
+  setIsGameWon,
+  resetCards,
+  setCurrentScore,
+}) {
   return (
     <div className={`modal-overlay ${isGameWon ? "active" : ""}`}>
       <div className="modal-content">
@@ -11,6 +16,7 @@ export default function WinModal({ isGameWon, setIsGameWon, resetCards }) {
           onClick={() => {
             setIsGameWon(false);
             resetCards();
+            setCurrentScore(0);
           }}
         >
           Play Again
@@ -24,4 +30,5 @@ WinModal.propTypes = {
   isGameWon: PropTypes.bool.isRequired,
   setIsGameWon: PropTypes.func.isRequired,
   resetCards: PropTypes.func.isRequired,
+  setCurrentScore: PropTypes.func.isRequired,
 };

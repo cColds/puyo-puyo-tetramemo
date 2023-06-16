@@ -17,12 +17,6 @@ export default function Game() {
     setCards(generateNewCards(cardsData));
   };
 
-  const isBestScore = () => currentScore > bestScore;
-
-  const incrementCurrentScore = () => setCurrentScore(currentScore + 1);
-
-  const updateBestScore = () => setBestScore(currentScore);
-
   return (
     <div>
       <div className="score-container">
@@ -33,10 +27,10 @@ export default function Game() {
       <Cards
         cards={cards}
         activeCards={activeCards}
+        currentScore={currentScore}
+        bestScore={bestScore}
         setCards={setCards}
-        incrementCurrentScore={incrementCurrentScore}
-        updateBestScore={updateBestScore}
-        isBestScore={isBestScore}
+        setBestScore={setBestScore}
         generateNewCards={generateNewCards}
         setIsGameLost={setIsGameLost}
         setIsGameWon={setIsGameWon}
@@ -52,6 +46,7 @@ export default function Game() {
         setIsGameWon={setIsGameWon}
         isGameWon={isGameWon}
         resetCards={resetCards}
+        setCurrentScore={setCurrentScore}
       />
     </div>
   );
@@ -59,7 +54,11 @@ export default function Game() {
 
 // TODO:
 /* 
-- Add modal for winning and losing game
+- Clean code
+- Add stats when player wins or loses the game
+- Animate current score
+- Animate best score
+- Figure out why the cards sometimes don't shuffle (at least the first level)
 
 */
 
@@ -79,4 +78,5 @@ export default function Game() {
 - End Game if all cards including previous cards have been clicked
 - isCardInUse prop to isInUse for conciseness (or maybe to active)
 - Convert the rest of the functions to arrow functions
+- Add modal for winning and losing game
 */
