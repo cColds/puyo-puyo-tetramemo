@@ -10,6 +10,7 @@ export default function Cards({
   isBestScore,
   generateNewCards,
   setIsGameLost,
+  setIsGameWon,
   setCurrentScore,
 }) {
   const getCardsClicked = (targetCards, cardToUpdate) => {
@@ -38,8 +39,17 @@ export default function Cards({
     return activeCardsFiltered.every((card) => card.hasClicked);
   };
 
+  const areAllCardsClicked = (targetCards) =>
+    targetCards.every((card) => card.hasClicked);
+
   const handleGameLost = () => {
     setIsGameLost(true);
+    setCurrentScore(0);
+    if (isBestScore()) updateBestScore();
+  };
+
+  const handleGameWon = () => {
+    setIsGameWon(true);
     setCurrentScore(0);
     if (isBestScore()) updateBestScore();
   };
@@ -51,6 +61,11 @@ export default function Cards({
     }
 
     const updatedCards = getCardsClicked(getShuffledCards(cards), card);
+    if (areAllCardsClicked(updatedCards)) {
+      handleGameWon();
+      return;
+    }
+
     if (areAllActiveCardsClicked(updatedCards)) {
       const newActiveCards = getNewActiveCards(updatedCards);
       setCards(generateNewCards(newActiveCards, activeCards.length));
@@ -108,5 +123,6 @@ Cards.propTypes = {
   isBestScore: PropTypes.func.isRequired,
   generateNewCards: PropTypes.func.isRequired,
   setIsGameLost: PropTypes.func.isRequired,
+  setIsGameWon: PropTypes.func.isRequired,
   setCurrentScore: PropTypes.func.isRequired,
 };
