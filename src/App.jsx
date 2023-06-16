@@ -2,6 +2,7 @@ import React from "react";
 import Game from "./components/Game";
 import "./styles/css/cards.css";
 import "./styles/css/app.css";
+import "./styles/css/modal.css";
 
 function App() {
   return (

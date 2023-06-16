@@ -6,10 +6,11 @@ export default function Cards({
   activeCards,
   setCards,
   incrementCurrentScore,
-  resetGame,
   updateBestScore,
   isBestScore,
   generateNewCards,
+  setIsGameLost,
+  setCurrentScore,
 }) {
   const getCardsClicked = (targetCards, cardToUpdate) => {
     const updatedCards = targetCards.map((card) => {
@@ -38,8 +39,8 @@ export default function Cards({
   };
 
   const handleGameLost = () => {
-    alert("You lost!");
-    resetGame();
+    setIsGameLost(true);
+    setCurrentScore(0);
     if (isBestScore()) updateBestScore();
   };
 
@@ -103,8 +104,9 @@ Cards.propTypes = {
   ).isRequired,
   setCards: PropTypes.func.isRequired,
   incrementCurrentScore: PropTypes.func.isRequired,
-  resetGame: PropTypes.func.isRequired,
   updateBestScore: PropTypes.func.isRequired,
   isBestScore: PropTypes.func.isRequired,
   generateNewCards: PropTypes.func.isRequired,
+  setIsGameLost: PropTypes.func.isRequired,
+  setCurrentScore: PropTypes.func.isRequired,
 };

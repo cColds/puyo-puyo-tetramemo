@@ -1,13 +1,15 @@
 import { useState } from "react";
 import Cards from "./Cards";
+import LoseModal from "./LoseModal";
 import { generateNewCards } from "../utils";
 import cardsData from "../data/cards";
 
 export default function Game() {
   const [cards, setCards] = useState(generateNewCards(cardsData));
-  const activeCards = cards.filter((card) => card.isActive);
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [isGameLost, setIsGameLost] = useState(false);
+  const activeCards = cards.filter((card) => card.isActive);
 
   const resetCards = () => {
     setCards(generateNewCards(cardsData));
@@ -18,11 +20,6 @@ export default function Game() {
   const incrementCurrentScore = () => setCurrentScore(currentScore + 1);
 
   const updateBestScore = () => setBestScore(currentScore);
-
-  const resetGame = () => {
-    resetCards();
-    setCurrentScore(0);
-  };
 
   return (
     <div>
@@ -36,10 +33,17 @@ export default function Game() {
         activeCards={activeCards}
         setCards={setCards}
         incrementCurrentScore={incrementCurrentScore}
-        resetGame={resetGame}
         updateBestScore={updateBestScore}
         isBestScore={isBestScore}
         generateNewCards={generateNewCards}
+        setIsGameLost={setIsGameLost}
+        setCurrentScore={setCurrentScore}
+      />
+
+      <LoseModal
+        setIsGameLost={setIsGameLost}
+        isGameLost={isGameLost}
+        resetCards={resetCards}
       />
     </div>
   );
