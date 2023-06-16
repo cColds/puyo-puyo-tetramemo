@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { getShuffledCards } from "../utils";
 
 export default function Cards({
   cards,
@@ -34,15 +35,6 @@ export default function Cards({
   const areAllActiveCardsClicked = (targetCards) => {
     const activeCardsFiltered = targetCards.filter((card) => card.isActive);
     return activeCardsFiltered.every((card) => card.hasClicked);
-  };
-
-  const getShuffledCards = (array) => {
-    const copy = [...array];
-    for (let i = copy.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [copy[i], copy[j]] = [copy[j], copy[i]];
-    }
-    return copy;
   };
 
   const handleGameLost = () => {
