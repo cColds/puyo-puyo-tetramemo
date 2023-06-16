@@ -8,7 +8,7 @@ const getShuffledCards = (targetCards) => {
   return copy;
 };
 
-const generateNewCards = (targetCards, activeCards = 0) => {
+const generateNewCards = (targetCards, activeCards = 2) => {
   const shuffledCards = getShuffledCards(targetCards);
   const cardsToGenerate = activeCards + 2;
   let generatedCards = 0;
