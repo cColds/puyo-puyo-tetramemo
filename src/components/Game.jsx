@@ -59,7 +59,7 @@ export default function Game() {
 - Animate current score
 - Animate best score
 - Figure out why the cards sometimes don't shuffle (at least the first level)
-
+- Increase default cards from 2 to 4
 */
 
 // Completed TODOS (sorted by oldest):
