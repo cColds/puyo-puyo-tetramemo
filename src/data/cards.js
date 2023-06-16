@@ -92,7 +92,7 @@ const cardsData = [
   },
 
   {
-    name: "marle alt",
+    name: "marle (alt)",
     image: "marle-alt.png",
     hasClicked: false,
     isActive: false,
