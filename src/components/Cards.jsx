@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export default function Cards({
   cards,
-  cardsInUse,
+  activeCards,
   setCards,
   incrementCurrentScore,
   resetGame,
@@ -10,21 +10,19 @@ export default function Cards({
   isBestScore,
   generateNewCards,
 }) {
-  const setCardsClicked = (targetCards, cardToUpdate) => {
+  const getCardsClicked = (targetCards, cardToUpdate) => {
     const updatedCards = targetCards.map((card) => {
-      if (card.id === cardToUpdate.id) {
-        return { ...cardToUpdate, hasClicked: true };
-      }
-      return card;
+      if (card.id !== cardToUpdate.id) return card;
+      return { ...cardToUpdate, hasClicked: true };
     });
 
     return updatedCards;
   };
 
-  const setAllCardsInUse = (targetCards) => {
+  const getNewActiveCards = (targetCards) => {
     const updatedCards = targetCards.map((card) => {
-      if (card.isCardInUse) {
-        return { ...card, isCardInUse: false };
+      if (card.isActive) {
+        return { ...card, isActive: false };
       }
 
       return card;
@@ -33,56 +31,50 @@ export default function Cards({
     return updatedCards;
   };
 
-  const areAllCardsInUseClicked = (targetCards) => {
-    const cardsInUseFiltered = targetCards.filter((card) => card.isCardInUse);
-    return cardsInUseFiltered.every((card) => card.hasClicked);
+  const areAllActiveCardsClicked = (targetCards) => {
+    const activeCardsFiltered = targetCards.filter((card) => card.isActive);
+    return activeCardsFiltered.every((card) => card.hasClicked);
   };
 
-  function getShuffledCards(array) {
+  const getShuffledCards = (array) => {
     const copy = [...array];
     for (let i = copy.length - 1; i > 0; i -= 1) {
       const j = Math.floor(Math.random() * (i + 1));
       [copy[i], copy[j]] = [copy[j], copy[i]];
     }
     return copy;
-  }
+  };
+
+  const handleGameLost = () => {
+    alert("You lost!");
+    resetGame();
+    if (isBestScore()) updateBestScore();
+  };
+
+  const handleCardClick = (card) => {
+    if (card.hasClicked) {
+      handleGameLost();
+      return;
+    }
+
+    const updatedCards = getCardsClicked(getShuffledCards(cards), card);
+    if (areAllActiveCardsClicked(updatedCards)) {
+      const newActiveCards = getNewActiveCards(updatedCards);
+      setCards(generateNewCards(newActiveCards, activeCards.length));
+    } else {
+      setCards(updatedCards);
+    }
+    incrementCurrentScore();
+  };
 
   return (
     <ul>
-      {cardsInUse.map((card) => (
+      {activeCards.map((card) => (
         <li key={card.id} className="card">
           <button
             type="button"
             className="card-button"
-            onClick={() => {
-              if (!card.hasClicked) {
-                const updatedCards = setCardsClicked(
-                  getShuffledCards(cards),
-                  card
-                );
-                setCards(() => updatedCards);
-                incrementCurrentScore();
-                if (areAllCardsInUseClicked(updatedCards)) {
-                  setCards(
-                    generateNewCards(
-                      setAllCardsInUse(updatedCards),
-                      cardsInUse.length
-                    )
-                  );
-                }
-
-                return;
-              }
-
-              if (card.hasClicked) {
-                alert("You lost!");
-                resetGame();
-              }
-
-              if (isBestScore()) {
-                updateBestScore();
-              }
-            }}
+            onClick={() => handleCardClick(card)}
           >
             <img
               className="character-image"
@@ -99,12 +91,12 @@ export default function Cards({
 }
 
 Cards.propTypes = {
-  cardsInUse: PropTypes.arrayOf(
+  activeCards: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
       image: PropTypes.string,
       hasClicked: PropTypes.bool,
-      isCardInUse: PropTypes.bool,
+      isActive: PropTypes.bool,
       id: PropTypes.string,
     })
   ).isRequired,
@@ -113,7 +105,7 @@ Cards.propTypes = {
       name: PropTypes.string,
       image: PropTypes.string,
       hasClicked: PropTypes.bool,
-      isCardInUse: PropTypes.bool,
+      isActive: PropTypes.bool,
       id: PropTypes.string,
     })
   ).isRequired,
