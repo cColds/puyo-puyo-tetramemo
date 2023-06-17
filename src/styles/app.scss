@@ -7,6 +7,7 @@
 .App {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 
   .header-text {
     font-family: Modulus, system-ui, -apple-system, BlinkMacSystemFont,

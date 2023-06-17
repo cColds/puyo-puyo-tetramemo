@@ -13,8 +13,11 @@ function App() {
           <span className="puyo-puyo">puyo puyo </span>
           <span className="tetramemo">tetramemo</span>
         </h1>
-        <Game />
       </header>
+
+      <main>
+        <Game />
+      </main>
     </div>
   );
 }
