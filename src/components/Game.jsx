@@ -14,6 +14,7 @@ export default function Game() {
   const [isGameWon, setIsGameWon] = useState(false);
   const activeCards = cards.filter((card) => card.isActive);
   const scoreRef = useRef(null);
+  const bestScoreRef = useRef(null);
   const cardRef = useRef(null);
 
   const resetCards = () => {
@@ -39,13 +40,27 @@ export default function Game() {
     return () => clearTimeout(timer);
   }, [currentScore]);
 
+  useEffect(() => {
+    const bestScoreNode = bestScoreRef.current;
+
+    bestScoreNode.classList.add("animate-scale-score");
+
+    const timer = setTimeout(() => {
+      bestScoreNode.classList.remove("animate-scale-score");
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [bestScore]);
+
   return (
     <div>
       <div className="score-container">
         <div className="current-score" ref={scoreRef}>
           Current score: {currentScore}
         </div>
-        <div className="best-score">Best score: {bestScore}</div>
+        <div className="best-score" ref={bestScoreRef}>
+          Best score: {bestScore}
+        </div>
       </div>
 
       <Cards
