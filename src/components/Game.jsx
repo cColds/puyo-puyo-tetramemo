@@ -33,7 +33,7 @@ export default function Game() {
       timer = setTimeout(() => {
         scoreNode.classList.remove("animate-scale-score");
         cardNode.classList.remove("hide");
-      }, 200);
+      }, 300);
     }
 
     return () => clearTimeout(timer);
