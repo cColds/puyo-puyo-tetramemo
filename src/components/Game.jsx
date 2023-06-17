@@ -77,17 +77,22 @@ export default function Game() {
         ref={cardRef}
       />
 
-      <LoseModal
-        setIsGameLost={setIsGameLost}
-        isGameLost={isGameLost}
-        resetCards={resetCards}
-      />
-      <WinModal
-        setIsGameWon={setIsGameWon}
-        isGameWon={isGameWon}
-        resetCards={resetCards}
-        setCurrentScore={setCurrentScore}
-      />
+      {isGameLost && (
+        <LoseModal
+          setIsGameLost={setIsGameLost}
+          isGameLost={isGameLost}
+          resetCards={resetCards}
+        />
+      )}
+
+      {isGameWon && (
+        <WinModal
+          setIsGameWon={setIsGameWon}
+          isGameWon={isGameWon}
+          resetCards={resetCards}
+          setCurrentScore={setCurrentScore}
+        />
+      )}
     </div>
   );
 }
