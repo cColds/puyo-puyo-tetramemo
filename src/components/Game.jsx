@@ -91,32 +91,3 @@ export default function Game() {
     </div>
   );
 }
-
-// TODO:
-/* 
-- Animate current score
-- Animate best score
-
-*/
-
-// Completed TODOS (sorted by oldest):
-/* 
-- End game if clicked the same card
-- Add current score counter
-- Add best score counter
-- Generate more cards after clicking on all cards (maybe unique ones only)
-- Randomize cards on click
-- Add more cards to cards.js
-- Add Nunito font for base and Modulus font for title
-- Center app's children
-- Remove card button's border
-- Add gap between cards
-- Style title's text
-- End Game if all cards including previous cards have been clicked
-- isCardInUse prop to isInUse for conciseness (or maybe to active)
-- Convert the rest of the functions to arrow functions
-- Add modal for winning and losing game
-- Increase default cards from 2 to 4
-- Animate cards when they respawn
-
-*/
