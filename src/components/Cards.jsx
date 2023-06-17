@@ -1,4 +1,7 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import { getShuffledCards } from "../utils";
 
 export default function Cards({
@@ -13,6 +16,14 @@ export default function Cards({
   bestScore,
   setBestScore,
 }) {
+  useEffect(() => {
+    if (currentScore !== 0) {
+      const newCardIds = cards.map((card) => ({ ...card, id: uuidv4() }));
+
+      setCards(newCardIds);
+    }
+  }, [currentScore]);
+
   const getCardsClicked = (targetCards, cardToUpdate) => {
     const updatedCards = targetCards.map((card) => {
       if (card.id !== cardToUpdate.id) return card;
