@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/puyo-puyo-tetramemo/static/css/main.41bd0464.css",
+    "main.js": "/puyo-puyo-tetramemo/static/js/main.0f869912.js",
+    "static/media/blue-space.png": "/puyo-puyo-tetramemo/static/media/blue-space.330c84c355162929b987.png",
+    "static/media/Nunito-Bold.ttf": "/puyo-puyo-tetramemo/static/media/Nunito-Bold.f4338623f94e6079de97.ttf",
+    "static/media/Modulus.ttf": "/puyo-puyo-tetramemo/static/media/Modulus.662d3d9cc66100e5d941.ttf",
+    "index.html": "/puyo-puyo-tetramemo/index.html",
+    "main.41bd0464.css.map": "/puyo-puyo-tetramemo/static/css/main.41bd0464.css.map",
+    "main.0f869912.js.map": "/puyo-puyo-tetramemo/static/js/main.0f869912.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.41bd0464.css",
+    "static/js/main.0f869912.js"
+  ]
+}
