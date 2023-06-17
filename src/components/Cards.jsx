@@ -81,7 +81,7 @@ const Cards = forwardRef(
     };
 
     return (
-      <ul ref={ref}>
+      <ul className="cards-list" ref={ref}>
         {activeCards.map((card) => (
           <li key={card.id} className="card">
             <button

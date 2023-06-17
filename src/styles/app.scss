@@ -24,7 +24,7 @@
     }
   }
 
-  ul {
+  .cards-list {
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
@@ -33,7 +33,7 @@
     padding: 10px;
   }
 
-  ul.hide {
+  .cards-list.hide {
     display: none;
   }
 }
