@@ -10,6 +10,7 @@
   width: 200px;
   height: 225px;
   transition: 0.3s;
+  animation: scale-cards 0.3s;
 
   &:hover {
     transform: scale(1.07);
@@ -37,6 +38,15 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+}
+
+@keyframes scale-cards {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
