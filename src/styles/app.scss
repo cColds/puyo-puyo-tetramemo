@@ -43,6 +43,11 @@
     .current-score {
       background-color: variables.$dark-blue;
     }
+
+    .animate-scale-score {
+      animation: scale-score 0.5s;
+    }
+
     .best-score {
       background-color: variables.$purple;
     }
@@ -55,5 +60,19 @@
     justify-content: center;
     gap: 25px;
     padding: 10px;
+  }
+}
+
+@keyframes scale-score {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }

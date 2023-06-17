@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Cards from "./Cards";
 import LoseModal from "./LoseModal";
 import WinModal from "./WinModal";
@@ -12,15 +12,33 @@ export default function Game() {
   const [isGameLost, setIsGameLost] = useState(false);
   const [isGameWon, setIsGameWon] = useState(false);
   const activeCards = cards.filter((card) => card.isActive);
+  const scoreRef = useRef(null);
 
   const resetCards = () => {
     setCards(generateNewCards(cardsData));
   };
 
+  useEffect(() => {
+    let timer;
+    if (currentScore !== 0) {
+      const node = scoreRef.current;
+
+      node.classList.add("animate-scale-score");
+      timer = setTimeout(
+        () => node.classList.remove("animate-scale-score"),
+        500
+      );
+    }
+
+    return () => clearTimeout(timer);
+  }, [currentScore]);
+
   return (
     <div>
       <div className="score-container">
-        <div className="current-score">Current score: {currentScore}</div>
+        <div className="current-score" ref={scoreRef}>
+          Current score: {currentScore}
+        </div>
         <div className="best-score">Best score: {bestScore}</div>
       </div>
 
@@ -54,12 +72,9 @@ export default function Game() {
 
 // TODO:
 /* 
-- Clean code
-- Add stats when player wins or loses the game
 - Animate current score
 - Animate best score
-- Figure out why the cards sometimes don't shuffle (at least the first level)
-- Increase default cards from 2 to 4
+
 */
 
 // Completed TODOS (sorted by oldest):
@@ -79,4 +94,7 @@ export default function Game() {
 - isCardInUse prop to isInUse for conciseness (or maybe to active)
 - Convert the rest of the functions to arrow functions
 - Add modal for winning and losing game
+- Increase default cards from 2 to 4
+- Animate cards when they respawn
+
 */

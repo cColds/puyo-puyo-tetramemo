@@ -5,7 +5,6 @@ export default function Cards({
   cards,
   activeCards,
   setCards,
-
   currentScore,
   generateNewCards,
   setIsGameLost,
@@ -70,7 +69,7 @@ export default function Cards({
     }
     const updatedCurrentScore = currentScore + 1;
     setCurrentScore(updatedCurrentScore);
-    console.log(areAllCardsClicked(updatedCards));
+
     if (areAllCardsClicked(updatedCards)) {
       handleGameWon(updatedCurrentScore);
     }
