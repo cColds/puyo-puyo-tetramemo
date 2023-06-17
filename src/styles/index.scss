@@ -11,7 +11,7 @@
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -21,15 +21,10 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  overflow-x: scroll;
 }
 
 button {
   cursor: pointer;
   border: 0;
   font: inherit;
-}
-
-#root {
-  height: 100%;
 }
