@@ -61,6 +61,10 @@
     gap: 25px;
     padding: 10px;
   }
+
+  ul.hide {
+    display: none;
+  }
 }
 
 @keyframes scale-score {

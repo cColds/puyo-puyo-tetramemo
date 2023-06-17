@@ -14,6 +14,7 @@ export default function Game() {
   const [isGameWon, setIsGameWon] = useState(false);
   const activeCards = cards.filter((card) => card.isActive);
   const scoreRef = useRef(null);
+  const cardRef = useRef(null);
 
   const resetCards = () => {
     setCards(generateNewCards(cardsData));
@@ -22,15 +23,17 @@ export default function Game() {
   useEffect(() => {
     let timer;
     if (currentScore !== 0) {
-      const node = scoreRef.current;
+      const scoreNode = scoreRef.current;
+      const cardNode = cardRef.current;
       const newCardIds = cards.map((card) => ({ ...card, id: uuidv4() }));
 
-      node.classList.add("animate-scale-score");
+      scoreNode.classList.add("animate-scale-score");
+      cardNode.classList.add("hide");
       setCards(newCardIds);
-      timer = setTimeout(
-        () => node.classList.remove("animate-scale-score"),
-        500
-      );
+      timer = setTimeout(() => {
+        scoreNode.classList.remove("animate-scale-score");
+        cardNode.classList.remove("hide");
+      }, 200);
     }
 
     return () => clearTimeout(timer);
@@ -56,6 +59,7 @@ export default function Game() {
         setIsGameLost={setIsGameLost}
         setIsGameWon={setIsGameWon}
         setCurrentScore={setCurrentScore}
+        ref={cardRef}
       />
 
       <LoseModal
