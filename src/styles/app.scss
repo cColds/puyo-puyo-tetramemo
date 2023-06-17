@@ -23,17 +23,4 @@
       color: variables.$purple;
     }
   }
-
-  .cards-list {
-    list-style-type: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    padding: 10px;
-  }
-
-  .cards-list.hide {
-    display: none;
-  }
 }
