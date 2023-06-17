@@ -83,10 +83,10 @@ const Cards = forwardRef(
     return (
       <ul className="cards-list" ref={ref}>
         {activeCards.map((card) => (
-          <li key={card.id} className="card">
+          <li key={card.id}>
             <button
               type="button"
-              className="card-button"
+              className="card"
               onClick={() => handleCardClick(card)}
             >
               <img

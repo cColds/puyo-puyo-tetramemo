@@ -13,7 +13,7 @@
   display: none;
 }
 
-.card-button {
+.card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -66,7 +66,7 @@
 // Desktop
 
 @media (max-width: 1600px) {
-  .card-button {
+  .card {
     width: 180px;
     height: 210px;
 
@@ -80,7 +80,7 @@
 // Laptops and Tablets
 
 @media (max-width: 1200px) {
-  .card-button {
+  .card {
     width: 150px;
     height: 200px;
 
@@ -94,7 +94,7 @@
 // Phones
 
 @media (max-width: 480px) {
-  .card-button {
+  .card {
     width: 130px;
     height: 200px;
 
