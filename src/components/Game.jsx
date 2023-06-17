@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Cards from "./Cards";
 import LoseModal from "./LoseModal";
 import WinModal from "./WinModal";
@@ -22,8 +23,10 @@ export default function Game() {
     let timer;
     if (currentScore !== 0) {
       const node = scoreRef.current;
+      const newCardIds = cards.map((card) => ({ ...card, id: uuidv4() }));
 
       node.classList.add("animate-scale-score");
+      setCards(newCardIds);
       timer = setTimeout(
         () => node.classList.remove("animate-scale-score"),
         500
