@@ -1,6 +1,6 @@
 # Puyo Puyo Tetramemo
 
-A React memory card app [Puyo Puyo Tetris](https://puyonexus.com/wiki/Puyo_Puyo_Tetris_2) themed game featuring over 40 unique characters. Cards start at 4, but increase by 2 with unique cards each time. Your goal is to click all the cards without clicking it more than once to win the game.
+A React memory card app [Puyo Puyo Tetris](https://puyonexus.com/wiki/Puyo_Puyo_Tetris_2) themed game featuring 40 unique characters. Cards start at 4, but increase by 2 with unique cards each time. Your goal is to click all the cards without clicking it more than once to win the game.
 
 [Live Demo](https://ccolds.github.io/puyo-puyo-tetramemo/)
 
