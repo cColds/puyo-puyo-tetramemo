@@ -41,13 +41,16 @@ export default function Game() {
   }, [currentScore]);
 
   useEffect(() => {
-    const bestScoreNode = bestScoreRef.current;
+    let timer;
 
-    bestScoreNode.classList.add("animate-scale-score");
+    if (currentScore > bestScore) {
+      const bestScoreNode = bestScoreRef.current;
+      bestScoreNode.classList.add("animate-scale-score");
 
-    const timer = setTimeout(() => {
-      bestScoreNode.classList.remove("animate-scale-score");
-    }, 300);
+      timer = setTimeout(() => {
+        bestScoreNode.classList.remove("animate-scale-score");
+      }, 300);
+    }
 
     return () => clearTimeout(timer);
   }, [bestScore]);
