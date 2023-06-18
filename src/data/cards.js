@@ -260,15 +260,8 @@ const cardsData = [
   },
 
   {
-    name: "yu",
-    image: "yu.png",
-    hasClicked: false,
-    isActive: false,
-    id: uuidv4(),
-  },
-  {
-    name: "rei",
-    image: "rei.png",
+    name: "yu & rei",
+    image: "yu-and-rei.png",
     hasClicked: false,
     isActive: false,
     id: uuidv4(),
