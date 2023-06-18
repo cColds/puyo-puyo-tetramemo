@@ -43,7 +43,7 @@ export default function Game() {
   useEffect(() => {
     let timer;
 
-    if (currentScore > bestScore) {
+    if (currentScore > bestScore || isGameWon) {
       const bestScoreNode = bestScoreRef.current;
       bestScoreNode.classList.add("animate-scale-score");
 
